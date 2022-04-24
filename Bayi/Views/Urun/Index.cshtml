@@ -1,0 +1,110 @@
+﻿@using System.Globalization
+@model IEnumerable<UrunModel>
+
+@{
+    ViewData["Title"] = "Ürünler";
+}
+
+<div class="text-center">
+    <h2>@ViewData["Title"]</h2>
+</div>
+
+@if (User.Identity.IsAuthenticated && User.IsInRole("Üretici"))
+{
+    <p>
+        <a asp-action="Create" class="btn btn-danger"> Yeni Ürün Ekle</a>
+    </p>
+}
+
+<table id="urun" class="display">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Adi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Aciklamasi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BirimFiyati)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StokMiktari)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SonKullanmaTarihiModel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KategoriModel.Adi)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Adi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Aciklamasi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BirimFiyati)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StokMiktari)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SonKullanmaTarihi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KategoriModel.Adi)
+                </td>
+                <td>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        @if (User.IsInRole("Bayi"))
+                        {
+                            <a asp-action="Ekle" class="btn btn-success" asp-controller="Sepet" asp-route-urunId="@item.Id">Kovaya Ekle</a>
+                        }
+                        <a asp-action="Details" class="btn btn-info" asp-route-id="@item.Id">Detay</a>
+                        @if (User.IsInRole("Üretici"))
+                        {
+                            <a asp-action="Edit" class="btn btn-warning" asp-route-id="@item.Id">Düzenle</a>
+                            <a href="#" class="btn btn-danger" onclick="Sil(@item.Id);"> Sil</a>
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts {
+<link href="/lib/datatables/css/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="/lib/datatables/js/jquery.dataTables.min.js"></script>
+
+<link href="~/lib/AlertifyJS/css/alertify.min.css" rel="stylesheet" />
+<script src="/lib/AlertifyJS/alertify.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+         $('#urun').DataTable({
+            language: {
+                // Eğer kullanılan metinsel bir dosyada Türkçe karakter sorunu varsa
+                // dosya Notepad ile açılıp kodlama (encoding) UTF-8'e değiştirilerek kaydedilmelidir.
+                url: "/json/datatablesTurkish.json"
+            }
+        });
+    });
+     function Sil(id) {
+            alertify.confirm("Dikkat!", "Ürün Silinsin mi?",
+              function(){ 
+                window.location.href = "/Urun/Delete/" + id
+              },
+              function(){
+            }).set('labels', { ok: 'Evet', cancel: 'Hayır' });
+        }
+</script>
+}

@@ -1,0 +1,76 @@
+﻿@model IEnumerable<HesapModel>
+
+@{
+    ViewData["Title"] = "Kullanıcı Listesi";
+}
+<div class="text-center">
+    <h1>@ViewData["Title"]</h1>
+</div>
+<p class="p-3 mb-2 bg-success text-white">
+    @{
+        string count;
+        if (Model != null && Model.Count() > 0)
+        {
+            if (Model.Count() == 1)
+            {
+                count = Model.Count() + " Kullanıcı Bulundu";
+            }
+            else
+            {
+                count = Model.Count() + " Kullanıcı Bulundu";
+            }
+        }
+        else
+        {
+            count = ViewBag.Message.ToString();
+        }
+        @count
+    }
+</p>
+@if (Model != null && Model.Count() > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.RolModel.Adi)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.KullaniciAdi)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.HesapDetayi.EPosta)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Aktif)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RolModel.Adi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.KullaniciAdi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HesapDetayi.EPosta)
+                    </td>
+                    <td>
+                        <div class="spinner-border text-info" role="status">
+                            <span class="visually-hidden"></span>
+                        </div>
+                        @*@Html.DisplayFor(modelItem => item.Aktif)*@
+                    </td>
+                    <td>
+                        <a asp-action="Details" class="btn btn-info" asp-route-id="@item.Id">Kullanıcı Detayı</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

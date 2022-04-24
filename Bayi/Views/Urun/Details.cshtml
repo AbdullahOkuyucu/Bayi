@@ -1,0 +1,55 @@
+﻿@model UrunModel
+
+@{
+    ViewData["Title"] = "Detay";
+}
+
+<div class="text-center">
+<h2>@ViewData["Title"]</h2>
+</div>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Adi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Adi)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Aciklamasi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Aciklamasi)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BirimFiyati)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BirimFiyati)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StokMiktari)
+        </dt>
+        <dd class = "col-sm-10">
+
+            @Html.DisplayFor(model => model.StokMiktari)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SonKullanmaTarihiModel)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SonKullanmaTarihiModel)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.KategoriModel.Adi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.KategoriModel.Adi)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" class="btn btn-outline-danger" asp-route-id="@Model?.Id">Düzenle</a> 
+    <a asp-action="Index" class="btn btn-outline-warning">Liste</a>
+</div>

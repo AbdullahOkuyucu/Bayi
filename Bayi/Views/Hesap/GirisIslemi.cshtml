@@ -1,0 +1,55 @@
+﻿@model HesapGirisModel
+@{
+    ViewData["Title"] = "Giriş Ekranı";
+}
+
+@*<div class="text-center">
+    <h2>@ViewData["Title"]</h2>
+</div>*@
+<div class="login">
+    <h1>Giriş Ekranı</h1>
+    <form method="post">
+        <form asp-action="GirisIslemi" asp-controller="Hesap">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="All" class="text-white"></div>
+            @*    	<input type="text" name="u" placeholder="Username" required="required" />
+            *@        <input asp-for="KullaniciAdi" class="form-control" type="text" placeholder="Kullanıcı adınız">
+            @*        <input type="password" name="p" placeholder="Password" required="required" />
+            *@        <input asp-for="Sifre" class="form-control" type="password" placeholder="Şifreniz">
+            @*        <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
+            *@        <button id="submit" type="submit" class="btn btn-primary btn-block btn-large">Giriş</button>
+        </form>
+    </form>
+</div>
+@*<div class="form-body">
+    <div class="row">
+    <div class="form-holder">
+    <div class="form-content">
+    <div class="form-items">
+    <h3>Giriş</h3>
+    <p>Kullanıcı Adı ile Şifrenizi Giriniz...</p>
+    <form asp-action="GirisIslemi" asp-controller="Hesap">
+    @Html.AntiForgeryToken()
+    <div asp-validation-summary="All" class="text-red"></div>
+    <div class="col-md-12">
+    <input asp-for="KullaniciAdi" class="form-control" type="text" placeholder="Kullanıcı adınız">
+    </div>
+    <br />
+    <div class="col-md-12">
+    <input asp-for="Sifre" class="form-control" type="password" placeholder="Şifreniz">
+    </div>
+    <br />
+    <div class="d-grid gap-2 col-2 mx-auto">
+    <button id="submit" type="submit" class="btn btn-outline-success">Giriş</button>
+    </div>
+    </form>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+*@
+@section Scripts
+{
+<link href="/css/login.css" rel="stylesheet" />
+}

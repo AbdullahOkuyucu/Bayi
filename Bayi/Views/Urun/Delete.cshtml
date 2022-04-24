@@ -1,0 +1,51 @@
+﻿@model UrunModel
+
+@{
+    ViewData["Title"] = "Sil";
+}
+
+<h1>Sil</h1>
+
+<h3>Silmek istediğinize emin misiniz ?</h3>
+<div>
+    <h4>Ürün</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Adi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Adi)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Aciklamasi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Aciklamasi)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BirimFiyati)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BirimFiyati)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StokMiktari)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StokMiktari)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SonKullanmaTarihi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SonKullanmaTarihi)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="alert alert-danger" /> |
+        <a asp-action="Index">Liste</a>
+    </form>
+</div>

@@ -1,0 +1,46 @@
+﻿@model HesapKayitModel
+
+@{
+    ViewData["Title"] = "Kayıt Ekranı";
+}
+
+<div class="text-center">
+<h2>@ViewData["Title"]</h2>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Kayit">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="KullaniciAdi"></label>
+                <input asp-for="KullaniciAdi" class="form-control" />
+                <span asp-validation-for="KullaniciAdi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sifre"></label>
+                <input asp-for="Sifre" class="form-control" type="password" />
+                <span asp-validation-for="Sifre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SifreTekrar"></label>
+                <input asp-for="SifreTekrar" class="form-control" type="password" />
+                <span asp-validation-for="SifreTekrar" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HesapDetayi.EPosta"></label>
+                <input asp-for="HesapDetayi.EPosta" class="form-control" />
+                <span asp-validation-for="HesapDetayi.EPosta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HesapDetayi.Adres"></label>
+                <textarea asp-for="HesapDetayi.Adres" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="HesapDetayi.Adres" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="d-grid gap-2 col-2 mx-auto">
+                <input type="submit" value="Kayıt Ol" class="btn btn-outline-warning" />
+            </div>
+        </form>
+    </div>
+</div>

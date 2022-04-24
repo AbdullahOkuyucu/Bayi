@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Ana Sayfa";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Stok</h1>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <p>Hoşgeldiniz @User.Identity.Name.</p>
+    }
+    else
+    {
+        <p>Hoşgeldiniz.</p>
+    }
+
+@if (User.Identity.IsAuthenticated && User.IsInRole("Üretici"))
+    {
+<div class="progress" style="height: 40px;">
+  <div class="progress-bar progress-bar-striped bg-primary progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 100%">Stok Durumu %100</div>
+</div>
+<hr />
+<div class="progress" style="height: 40px;">
+  <div class="progress-bar progress-bar-striped bg-warning progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 55%">Kahve %55</div>
+</div>
+<hr />
+<div class="progress" style="height: 40px;">
+  <div class="progress-bar progress-bar-striped bg-danger progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 45%">Konserve %45</div>
+</div>
+<hr />
+<div class="progress" style="height: 40px;">
+  <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 35%">Nakit Satış %35</div>
+  <div class="progress-bar progress-bar-striped bg-info progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 65%">Kart Satış %65</div>
+</div>
+<br/>
+}
+@section Scripts {
+<script type="text/javascript">
+var para_birimleri="USD-EUR";
+var arka_plan="FFFFFF";
+var cerceve="697A14";
+var kutucuk="FFFFFF";
+var piyasa_baslik="FFFFFF";
+var tur_baslik="FF0000";
+var fiyat_baslik="000000";
+var kutu_kose="oval";
+var genislik="350";
+var bankalar="acik";
+var paylasim="kapali";
+</script>
+<div style="width:7S00px;font-size:12px;text-align:right;"><a name="dovizekle" target="_blank"  href="//altin.in/fiyat/ceyrek-altin">çeyrek altın</a></div><script type="text/javascript" charset="iso-8859-9" src="//eklenti.altin.in/doviz.js"></script>
+}
+<script>

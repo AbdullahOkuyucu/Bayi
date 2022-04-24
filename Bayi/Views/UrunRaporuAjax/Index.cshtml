@@ -1,0 +1,96 @@
+﻿@model UrunRaporuAjaxIndexViewModel
+
+@{
+    ViewData["Title"] = "Ürün Raporu";
+}
+<div class="text-center">
+    <h2>@ViewData["Title"]</h2>
+</div>
+
+<form asp-action="Index" autocomplete="off" id="form" data-ajax="true" data-ajax-method="post" data-ajax-mode="replacewith" data-ajax-update="#urunraporu">
+    @Html.HiddenFor(m => m.Filtre.KategoriId)
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+    <div class="row">
+        @*<div class="col-2">
+            </div>*@
+        <div class="col-12">
+            <div class="row" style="padding-top: 10px;">
+                <div class="col-2">
+                    @Html.DisplayNameFor(m => m.Filtre.UrunAdi)
+                </div>
+                <div class="col-4">
+                    @Html.TextBoxFor(m => m.Filtre.UrunAdi, new { @class = "form-control"})
+                </div>
+                <div class="col-2">
+                    @Html.DisplayNameFor(m => m.Filtre.StokMiktariBaslangic)
+                </div>
+                <div class="col-4">
+                    <div class="input-group">
+                        @Html.TextBoxFor(m => m.Filtre.StokMiktariBaslangic, new { @class = "form-control" })
+                        <span class="input-group-text">-</span>
+                        @Html.TextBoxFor(m => m.Filtre.StokMiktariBitis, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="padding-top: 10px;">
+                <div class="col-2">
+                    @Html.DisplayNameFor(m => m.Filtre.SonKullanmaTarihiBaslangic)
+                </div>
+                <div class="col-4">
+                    <div class="input-group">
+                        @Html.TextBoxFor(m => m.Filtre.SonKullanmaTarihiBaslangic, new { @class = "form-control tarih" })
+                        <span class="input-group-text">-</span>
+                        @Html.TextBoxFor(m => m.Filtre.SonKullanmaTarihiBitis, new { @class = "form-control tarih" })
+                    </div>
+                </div>
+                <div class="col-2">
+                    @Html.DisplayNameFor(m => m.Filtre.BirimFiyatBaslangic)
+                </div>
+                <div class="col-4">
+                    <div class="input-group">
+                        @Html.TextBoxFor(m => m.Filtre.BirimFiyatBaslangic, new { @class = "form-control" })
+                        <span class="input-group-text">-</span>
+                        @Html.TextBoxFor(m => m.Filtre.BirimFiyatBitis, new { @class = "form-control" })
+                    </div>
+                </div>
+
+            </div>
+            <div class="text-center">
+                <div class="row" style="padding-top: 10px;">
+                    <div class="col-12">
+                        <select asp-for="Sayfa.PageNumber" asp-items="Model.Sayfalar" class="btn btn-secondary dropdown-toggle" id="pagenumber"></select>
+                        <button type="submit" class="btn btn-outline-success"> Ara</button>
+                        <a asp-action="Export" class="btn btn-outline-warning"> Excell</a>
+                    </div>
+                </div>
+            </div>
+            </br>
+            <div id="urunraporu">
+                <partial name="_UrunRaporu" model="@Model"></partial>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts
+{
+
+<script src="/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+        $(document).on("click", ".orderbyexpressionlink", function(e)
+        {
+            e.preventDefault();
+            $("#orderbyexpressioninput").val($(this).text());
+            var ascending = $("#orderbydirectioninput").val();
+            if (ascending == "True")
+                ascending = "False";
+            else
+                ascending = "True";
+            $("#orderbydirectioninput").val(ascending);
+            $("#form").submit();
+        });
+    });
+</script>
+}
